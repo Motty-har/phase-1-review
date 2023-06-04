@@ -1,5 +1,5 @@
 const submitForm = document.getElementById('post')
-submitForm.addEventListener("submit", (event) => {
+addEventListener("DOMContentLoaded", addEventListener("submit", (event) => {
     event.preventDefault()
     const firstName = event.target[0].value
     const lastName = event.target[1].value
@@ -11,13 +11,16 @@ submitForm.addEventListener("submit", (event) => {
         goals: goals,
         assists: assists
 }
-
-}
-    
-
-    
-
-)
+fetch("http://localhost:3000/player", {
+        method: "POST",
+        headers: {
+          "Content-type": "Application/json",
+        },
+        body: JSON.stringify(playerStats)
+      })
+      .then(resp => resp.json)
+      .then(json => console.log("Success! Heres the players stats: \n\n", json ))
+}))
 /*fetch('http://localhost:3000/player',{   
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
